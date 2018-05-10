@@ -1,10 +1,10 @@
 package com.rodrigomoral.kotlinmvp.main
 
 import android.os.Bundle
-import android.widget.TextView
 import com.rodrigomoral.kotlinmvp.R
 import com.rodrigomoral.kotlinmvp.core.base.BaseActivity
 import com.rodrigomoral.kotlinmvp.core.utils.app
+import com.rodrigomoral.kotlinmvp.fragment.FragmentFragment
 import com.rodrigomoral.kotlinmvp.main.dagger.MainModule
 import javax.inject.Inject
 
@@ -20,14 +20,15 @@ class MainActivity : BaseActivity(), MainContract.View {
     lateinit var mPresenter: MainContract.Presenter
     //endregion
 
-    private lateinit var mTextView: TextView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         component.inject(this)
 
+        //Test call to the presenter
         mPresenter.testFunPresenter()
+
+        loadNewFragment(FragmentFragment(), R.id.main_fragment_container, false)
     }
 
     //region Contract methods
@@ -37,10 +38,6 @@ class MainActivity : BaseActivity(), MainContract.View {
     //endregion
 
     //region Base methods
-    override fun bindViews() {
-        mTextView = findViewById(R.id.textview)
-    }
-
     override fun getLayoutId(): Int {
         return R.layout.activity_main
     }

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Kotlin MVP Dagger</string>
+
+    <string name="fragment_message">Hello! I am a fragment</string>
 </resources>

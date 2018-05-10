@@ -1,6 +1,8 @@
 package com.rodrigomoral.kotlinmvp.core.application.dagger
 
 import com.rodrigomoral.kotlinmvp.core.application.App
+import com.rodrigomoral.kotlinmvp.fragment.dagger.FragmentComponent
+import com.rodrigomoral.kotlinmvp.fragment.dagger.FragmentModule
 import com.rodrigomoral.kotlinmvp.main.dagger.MainComponent
 import com.rodrigomoral.kotlinmvp.main.dagger.MainModule
 import dagger.Component
@@ -16,5 +18,6 @@ interface AppComponent {
     fun inject(app: App)
 
     fun plus(mainModule: MainModule): MainComponent
+    fun plus(fragmentModule: FragmentModule): FragmentComponent
 
 }
