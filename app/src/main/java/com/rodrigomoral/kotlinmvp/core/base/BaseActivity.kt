@@ -14,6 +14,13 @@ abstract class BaseActivity : AppCompatActivity() {
         bindViews()
     }
 
+    /**
+     * Bind all the views if necessary
+     */
     protected abstract fun bindViews()
+
+    /**
+     * Return this activity layout
+     */
     protected abstract fun getLayoutId(): Int
 }
