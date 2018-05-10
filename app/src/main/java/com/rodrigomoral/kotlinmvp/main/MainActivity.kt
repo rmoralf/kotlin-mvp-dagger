@@ -1,8 +1,9 @@
 package com.rodrigomoral.kotlinmvp.main
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import android.widget.TextView
 import com.rodrigomoral.kotlinmvp.R
+import com.rodrigomoral.kotlinmvp.core.base.BaseActivity
 import com.rodrigomoral.kotlinmvp.core.utils.app
 import com.rodrigomoral.kotlinmvp.main.dagger.MainModule
 import javax.inject.Inject
@@ -11,14 +12,15 @@ import javax.inject.Inject
  * Created by Rodrigo Moral Fiel on 10/05/2018
  */
 
-class MainActivity : AppCompatActivity(), MainContract.View {
-
+class MainActivity : BaseActivity(), MainContract.View {
     //region Dagger
     private val component by lazy { app.component.plus(MainModule(this)) }
 
     @Inject
     lateinit var mPresenter: MainContract.Presenter
     //endregion
+
+    private lateinit var mTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,8 +30,20 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         mPresenter.testFunPresenter()
     }
 
+    //region Contract methods
     override fun testFunView(number: Int) {
         println("Function testFunView $number")
     }
     //endregion
+
+    //region Base methods
+    override fun bindViews() {
+        mTextView = findViewById(R.id.textview)
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.activity_main
+    }
+    //endregion
+
 }
